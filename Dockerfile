@@ -34,11 +34,11 @@ RUN cabal update && cabal install \
   pandoc-citeproc-preamble \
   pandoc-crossref
 
-RUN dpkg-reconfigure locales \
-  && locale-gen C.UTF-8 \
-  && /usr/sbin/update-locale LANG=C.UTF-8
-
-ENV LC_ALL C.UTF-8
+# Set the locale
+RUN dpkg-reconfigure locales
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # Export the output data
 WORKDIR /data
